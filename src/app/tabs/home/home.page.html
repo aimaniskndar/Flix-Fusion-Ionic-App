@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="welcome-container">
+    <h1>Welcome to Flix Fusion</h1>
+    <p class="description">Discover Movies and TV Shows hassle-free</p>
+  </div>
+
+  <div class="second-container">
+    <p>Start exploring the tabs below to discover and explore your favorite content.
+      Please make sure that you're connected to the internet.
+    </p>
+  </div>
+
+  <div class="poster-container">
+    <h1>Now Playing:</h1>
+    <div class="now-playing-carousel">
+      <div class="poster-wrapper" *ngFor="let poster of playing.results">
+        <div class="poster">
+          <img [src]="poster?.poster_path ? imageBaseUrl + '/w400' + poster.poster_path : ''">
+          <div class="title-overlay">
+            <h3>{{ poster.title }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="third-container">
+    <p>Created with <span class="heart-icon">❤️</span> by Muhammad Aiman Iskandar Bin Azman</p>
+    <p>Version: 1.0.0 | 25-09-2023</p>
+  </div>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button size="small">
+      <ion-icon name="menu-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button routerLink="/tabs/home/watchlist">
+        <ion-icon name="bookmarks-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button routerLink="/tabs/home/favorites">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <div class="info">
+    <p>If you have any questions, <br> visit our <span routerLink="/tabs/home/faq">FAQ</span> page.</p>
+  </div>
+</ion-content>

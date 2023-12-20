@@ -1,0 +1,92 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" default-href="/"></ion-back-button>
+    <ion-title>FAQ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        If you have any question, kindly select any of the question below.
+      </ion-card-title>
+    </ion-card-header>
+    <ion-accordion-group>
+      <ion-accordion value="first">
+        <ion-item slot="header" color="light">
+          <ion-label class="question">Do I need an account to use Flix Fusion?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">No. Currently you don't need to have an account to use Flix Fusion as
+          the database are being publicly shared using The Movie Database (TMDb) API. But you may needed it in future
+          updates.</div>
+      </ion-accordion>
+
+      <ion-accordion value="second">
+        <ion-item slot="header" color="light">
+          <ion-label class="question">Why can I add Movies and TV Shows to Favorites and Watchlist but unable to remove
+            it?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Due to API limitation and older version of TMDb API, we unable to
+          impliment a feature where user could removie Movies or TV Shows to their Favorites and Watchlist. We are
+          currently waiting for an API version 4 update by TMDb.</div>
+      </ion-accordion>
+
+      <ion-accordion value="third">
+        <ion-item slot="header" color="light">
+          <ion-label class="question">Why I can't watch Movies and TV Shows directly on Flix Fusion</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Our main purpose for Flix Fusion is to make it free to use and available for all.
+          Streaming on Flix Fusion will wequires a subscription and payment to be done. We are working hard to find colaborators that could
+          offer free straming services.
+        </div>
+      </ion-accordion>
+
+      <ion-accordion value="fourth">
+        <ion-item slot="header" color="light">
+          <ion-label class="question">How does Flix Fusion works?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          Flix Fusion works by using an API from The Movie Database (TMDb). All the data are open source and community driven contribution
+          and checked by professionals for authenticity and to avoid data fraud.
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </ion-card>
+
+  <ion-card color="light">
+    <ion-card-content class="contact-section">
+      <ion-card-header>
+        <ion-card-title>
+          Contact US
+        </ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <p><b>Email: </b><a href="mailto:aiman.bound@gmail.com">aiman.bound@gmail.com</a></p>
+        <p><b>Tutorial: </b><a href="https://youtube.com/playlist?list=PLfk7mdEmqndPpxmd9eoIT6vBHqA1KT_3X&si=aziPVw5vWE4WO0Fa">Youtube Links</a></p>
+      </ion-card-content>
+    </ion-card-content>
+  </ion-card>
+  <!-- <ion-card class="contact-card">
+    <ion-card-header class="contact">
+      <ion-card-title>Contact Us</ion-card-title>
+    </ion-card-header>
+    
+    <ion-list class="contact-form">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input placeholder="Enter a valid email" ngModel email></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input placeholder="Your Name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Describe your issue</ion-label>
+        <ion-textarea placeholder="Please describe your issue" [autoGrow]="true"></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" size="medium" class="send-button">Send</ion-button>
+  </ion-card> -->
+</ion-content>

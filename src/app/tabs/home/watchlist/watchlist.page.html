@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" default-href="/"></ion-back-button>
+    <ion-title>Your Watchlist</ion-title>
+    <ion-buttons slot="end" class="ion-margin-end">
+      <ion-button fill="clear" (click)="toggleEdit()" [disabled]="true">
+        {{ editing ? 'Done' : 'Edit' }}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="100" [pullMax]="150" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card color="danger">
+    <ion-card-header>
+      <ion-card-subtitle>
+        Disclaimer: Due to the limitation of TMDb API Version 3, removing movies and tv shows from "Watchlist" need to be done on directly <a
+          href="https://www.themoviedb.org">TMDb websites</a> itself. This features will be impliment after the upgrade
+        to API Version 4
+      </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+  
+  <h1>Movies</h1>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" size-md="6" size-lg="4" class="ion-no-padding ion-no-margin" *ngFor="let media of watchlistMovies">
+        <ion-card class="content">
+          <img [src]="imageBaseUrl + '/w500' + media.poster_path" alt="{{ media.title }}">
+          <ion-card-header class="description">
+            <ion-card-title>{{ media.title }}</ion-card-title>
+            <ion-card-subtitle>{{ media.release_date | date:"Y" }}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <h1>TV Shows</h1>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" size-md="6" size-lg="4" class="ion-no-padding ion-no-margin" *ngFor="let media of watchlistTVShows">
+        <ion-card class="content">
+          <img [src]="imageBaseUrl + '/w500' + media.poster_path" alt="{{ media.title }}">
+          <ion-card-header class="description">
+            <ion-card-title>{{ media.name }}</ion-card-title>
+            <ion-card-subtitle>{{ media.first_air_date | date:"Y" }}</ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

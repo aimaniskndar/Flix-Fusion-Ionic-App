@@ -1,0 +1,7 @@
+{
+  "name": "Flix_Fusion",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,27 @@
+ion-avatar {
+    --border-radius: 5px;
+}
+
+ion-badge {
+    font-size: 18px;
+}
+
+ion-card-subtitle {
+    font-size: 15px;
+}
+
+.responsive-image {
+    width: 100%;
+    max-width: 100%;
+    /* Ensure the image does not exceed its natural width */
+    height: auto;
+    /* Maintain the original aspect ratio */
+    display: block;
+    /* Remove any potential vertical spacing */
+    margin: 0 auto;
+    /* Center the image horizontally */
+}
+
+h1 {
+    margin: 15px 15px 5px;
+}

@@ -1,0 +1,105 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/"></ion-back-button>
+    <ion-title>Browse Genres</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-segment [(ngModel)]="viewMode">
+    <ion-segment-button value="list">
+      List View
+    </ion-segment-button>
+    <ion-segment-button value="grid">
+      Grid View
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container *ngIf="viewMode === 'list'">
+    <h1>Movies</h1>
+    <ion-list>
+      <ion-item button *ngFor="let movie of movies" [routerLink]="[movie.id]">
+        <ion-avatar slot="start">
+          <img [src]="imageBaseUrl + '/w92' + movie.poster_path" alt="{{ movie.title }}">
+        </ion-avatar>
+        <ion-label>
+          {{ movie.title }}
+          <p>
+            {{ movie.release_date | date:"Y" }}
+          </p>
+        </ion-label>
+        <ion-badge slot="end"> {{ movie.vote_average | number:'1.1-1'}} </ion-badge>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+  <ng-container *ngIf="viewMode === 'grid'">
+    <ion-grid>
+      <!-- Display movie content in grid view -->
+        <h1>Movies</h1>
+        <ion-row>
+          <ion-col size="6" *ngFor="let movie of movies" class="responsive-image">
+            <ion-card button [routerLink]="[movie.id]">
+              <img [src]="imageBaseUrl + '/w185' + movie.poster_path" alt="{{ movie.title }}"
+                class="responsive-image" />
+              <ion-card-header>
+                <ion-card-title class="grid-card-title">{{ movie.title }}</ion-card-title>
+                <ion-card-subtitle>{{ movie.release_date | date:"Y" }}</ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <!-- Commented out TV Shows section -->
+  <!--
+  <ion-grid>
+    <ion-row *ngIf="viewMode === 'list'">
+      <ion-col size="12">
+        <h1>TV Shows</h1>
+        <ion-list>
+          <ion-item button *ngFor="let show of tv" [routerLink]="[show.id]">
+            <ion-avatar slot="start">
+              <img [src]="imageBaseUrl + '/w92' + show.poster_path" alt="{{ show.name }}">
+            </ion-avatar>
+            <ion-label>
+              {{ show.name }}
+              <p>
+                {{ show.first_air_date | date:"Y" }}
+              </p>
+            </ion-label>
+            <ion-badge slot="end"> {{ show.vote_average | number:'1.1-1'}} </ion-badge>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="viewMode === 'grid'">
+      <ion-col size="12">
+        <h1>TV Shows</h1>
+        <ion-row>
+          <ion-col size="6" size-sm="4" size-md="3" size-lg="2" *ngFor="let show of tv" class="tv-card">
+            <ion-card button [routerLink]="[show.id]">
+              <ion-img [src]="imageBaseUrl + '/w500' + show.poster_path"></ion-img>
+              <ion-card-header>
+                <ion-card-title>{{ show.name | slice: 0:20 }}{{ show.name.length > 20 ? '...' : '' }}</ion-card-title>
+                <ion-card-subtitle>
+                  {{ show.first_air_date | date:"Y" }}
+                </ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                <p class="overview">{{ show.overview | slice: 0:100 }}{{ show.overview.length > 100 ? '...' : '' }}</p>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  -->
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="lines"
+      loadingText="Fetching more content..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

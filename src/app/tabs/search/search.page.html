@@ -1,0 +1,71 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="main-title">Search Movies & TV</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="search-containers">
+    <ion-searchbar [(ngModel)]="searchTerm" placeholder="Search" animated="true"></ion-searchbar>
+    <ion-button (click)="onSearch()" slot="end" size="small">Search</ion-button>
+  </div>
+
+  <div class="scrollable-container">
+    <div class="search-selection">
+      <ion-chip class="ion-no-padding">
+        <ion-select [(ngModel)]="selectedType" interface="popover" placeholder="Categories (Required)">
+          <ion-select-option value="movie">Movies</ion-select-option>
+          <ion-select-option value="tv" [disabled]="true">TV Shows</ion-select-option>
+        </ion-select>
+      </ion-chip>
+
+      <ion-chip class="ion-no-padding">
+        <ion-select [(ngModel)]="includeAdult" interface="popover" placeholder="Adult content?">
+          <ion-select-option>Show All</ion-select-option>
+          <ion-select-option value="true">Yes</ion-select-option>
+          <ion-select-option value="false">No</ion-select-option>
+        </ion-select>
+      </ion-chip>
+
+      <ion-chip class="ion-no-padding">
+        <ion-select [(ngModel)]="language" interface="popover" placeholder="Language">
+          <ion-select-option>Show All</ion-select-option>
+          <ion-select-option value="en-US">English</ion-select-option>
+          <ion-select-option value="my-MY">Malay</ion-select-option>
+          <ion-select-option value="ja-JP">Japanese</ion-select-option>
+          <!-- Add more language options as needed -->
+        </ion-select>
+      </ion-chip>
+
+      <ion-chip class="ion-no-padding">
+        <ion-select [(ngModel)]="primaryReleaseYear" interface="popover" placeholder="Release Year">
+          <ion-select-option>Show All</ion-select-option>
+          <ion-select-option *ngFor="let y of primaryReleaseYears" [value]="y">{{ y }}</ion-select-option>
+        </ion-select>  
+      </ion-chip>
+
+      <ion-chip class="ion-no-padding">
+        <ion-select [(ngModel)]="region" interface="popover" placeholder="Region">
+          <ion-select-option>Show All</ion-select-option>
+          <ion-select-option value="US">United States</ion-select-option>
+          <ion-select-option value="MY">Malaysia</ion-select-option>
+          <ion-select-option value="JP">Japan</ion-select-option>
+          <!-- Add more region options as needed -->
+        </ion-select>
+      </ion-chip>
+    </div>
+  </div>
+
+  <ion-list>
+    <ion-item button *ngFor="let result of searchResults" [routerLink]="[result.id]">
+      <ion-avatar slot="start">
+        <img [src]="imageBaseUrl + '/w92' + result.poster_path" alt="{{ result.title }}">
+      </ion-avatar>
+      {{ result.title || result.name }}
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMoreResults($event)">
+    <ion-infinite-scroll-content loadingText="Loading more results..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

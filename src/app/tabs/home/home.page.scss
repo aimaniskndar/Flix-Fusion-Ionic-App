@@ -1,0 +1,112 @@
+body.light-theme {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+body.dark-theme {
+    background-color: #333;
+    color: #fff;
+}
+
+.welcome-container {
+    background: #3498db;
+    padding: 20px;
+    text-align: center;
+    margin: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: inherit;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: inherit;
+}
+
+.second-container {
+    background: #e74c3c;
+    padding: 20px;
+    text-align: center;
+    margin: 2rem;
+    border-radius: 10px;
+    color: inherit;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.poster-container {
+    background: rgb(244, 175, 97);
+    border-radius: 10px;
+    padding: 0 10px 10px;
+    margin: 20px;
+}
+
+.poster-container h1 {
+    margin: 5px 0 0;
+}
+
+.now-playing-carousel {
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.poster-wrapper {
+    padding: 2px;
+    display: inline-block;
+    width: 300px;
+}
+
+.poster {
+    position: relative;
+}
+
+.title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.7); /* Adjust the alpha value for the desired faded effect */
+    padding: 5px;
+    text-align: start;
+    color: black;
+}
+
+.title-overlay h3 {
+    margin: 0;
+}
+
+.third-container {
+    padding: 10px;
+    text-align: center;
+    margin: 2rem;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #e74c3c, #3498db);
+    color: inherit;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.info {
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    text-align: center;
+}
+
+.info span {
+    color: #3498db;
+    font-weight: bold;
+}
+
+ion-fab-button {
+    --background: #e74c3c;
+    --background-activated: #e76759;
+    --background-hover: #e76759;
+    --border-radius: 15px;
+    --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    --color: black;
+}

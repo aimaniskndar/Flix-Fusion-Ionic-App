@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-back-button slot="start" defaultHref="/"></ion-back-button>
+    <ion-title>{{ show?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <img *ngIf="show?.poster_path" [src]="imageBaseUrl + '/w500' + show?.poster_path" alt="{{ show?.name }}" class="responsive-image">
+    <ion-card-header>
+      <div class="header-content">
+        <ion-card-title>{{ show?.name }}</ion-card-title>
+        <ion-card-subtitle>{{ show?.tagline }}</ion-card-subtitle>
+        <ion-chip *ngFor="let g of show.genres; let isLast = last" color="primary">
+          {{ g.name }}{{ !isLast ? '' : '' }}
+        </ion-chip>
+      </div>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-buttons>
+        <ion-button (click)="addToFavorites()" color="success">
+          Add to Favorites
+        </ion-button>
+        <ion-button (click)="addToWatchlist()" color="success">
+          Add to Watchlist
+        </ion-button>
+      </ion-buttons>
+
+      <ion-label>
+        <h1 class="label">Summary</h1>
+        {{ show?.overview }}
+      </ion-label>
+      <ion-label>
+        <h1 class="label">Origin Country</h1>
+        {{ show?.origin_country }}
+      </ion-label>
+      <ion-label>
+        <h1 class="label">Homepage</h1>
+        <a *ngIf="show?.homepage" [href]="show.homepage" target="_blank">{{ show?.homepage }}</a>
+      </ion-label>
+      <ion-label>
+        <h1 class="label">In Production</h1>
+        <ng-container *ngIf="show?.in_production; else showEnded">Ongoing</ng-container>
+        <ng-template #showEnded>Show Ended</ng-template>
+      </ion-label>
+      <ion-label>
+        <h1 class="label">Language</h1>
+        {{ show?.original_language === 'en' ? 'English' : 'Non-English' }}
+      </ion-label>
+      <ion-label>
+        <h1 class="label">Episodes runtime</h1>
+        {{ show?.episode_run_time }} Minutes
+      </ion-label>
+      <ion-label>
+        <h1 class="label">Number of Episodes</h1>
+        {{ show?.number_of_episodes }}
+      </ion-label>
+      <ion-label>
+        <h1 class="label">Number of Seasons</h1>
+        {{ show?.number_of_seasons }}
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>

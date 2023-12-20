@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Browse Genres</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [color]="viewMode === 'movie' ? 'primary' : 'medium'" (click)="switchViewMode('movie')" [disabled]="true">
+        <ion-icon name="film"></ion-icon>
+      </ion-button>
+      <ion-button [color]="viewMode === 'tv' ? 'primary' : 'medium'" (click)="switchViewMode('tv')" [disabled]="true">
+        <ion-icon name="tv-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <h1>{{ viewMode === 'movie' ? 'Movie' : 'TV Series' }}</h1>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let genre of genres">
+        <ion-card button [routerLink]="[genre.id]" class="card">
+          <ion-card-header class="header">
+            <ion-card-title class="genre">{{ genre.name }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

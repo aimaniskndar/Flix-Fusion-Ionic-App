@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Top Rated Movies</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [color]="viewMode === 'list' ? 'primary' : 'medium'" (click)="viewMode = 'list'">
+        <ion-icon name="list-outline"></ion-icon>
+      </ion-button>
+      <ion-button [color]="viewMode === 'grid' ? 'primary' : 'medium'" (click)="viewMode = 'grid'">
+        <ion-icon name="grid-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="viewMode === 'list'">
+    <!-- Display list view -->
+    <ion-list>
+      <ion-item button *ngFor="let item of movies" [routerLink]="[item.id]">
+        <ion-avatar slot="start">
+          <img [src]="imageBaseUrl + '/w92' + item.poster_path" alt="{{ item.title }}">
+        </ion-avatar>
+        <ion-label>
+          {{ item.title }}
+          <p>
+            {{ item.release_date | date:"Y" }}
+          </p>
+        </ion-label>
+        <ion-badge slot="end"> {{ item.vote_average | number:'1.1-1'}} </ion-badge>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+  <ng-container *ngIf="viewMode === 'grid'">
+    <!-- Display grid view -->
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let item of movies" class="movie-card">
+          <ion-card button [routerLink]="[item.id]">
+            <img [src]="imageBaseUrl + '/w185' + item.poster_path" alt="{{ item.title }}" class="responsive-image"/>
+            <ion-card-header>
+              <ion-card-title class="grid-card-title">{{ item.title }}</ion-card-title>
+              <ion-card-subtitle>{{ item.release_date | date:"Y" }}</ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="lines" loadingText="Fetching more content..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
